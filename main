@@ -1,0 +1,97 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include<string.h>
+#include <stdio.h>
+#include"arbrelivre.h>
+
+
+
+int main(int argc, char *argv[])
+{
+    TArbre arbre=NULL;
+    int nombre,val;
+    int info;
+    int test=0;
+    char choix;
+    char nom;
+    char tps[100];
+
+
+
+    do
+    {
+
+        printf("\nMENU");
+        printf("\n1- Creer une nouvelle bibliothèque");
+        printf("\n2- Ajouter un code de livre");
+        printf("\n3- Recherche un code de livre");
+        printf("\n4- supprimer un livre grace a son code");
+        printf("\n5- Nombre d'elements de la biblioteque");
+        printf("\n6- Hauteur de l'arbre");
+        printf("\n7- Afficher l'arbre par rapport au code de livre");
+        printf("\n8- Afficher l'arbre par rapport au nom");
+        printf("\nAUTRE- Quitter");
+
+        fflush( stdin );
+        printf("Entrer votre choix :");
+        scanf("%c", &choix );
+        printf("\n");
+        switch (choix)
+        {
+                case '1' :
+                                arbre = NouvelArbreVide() ;
+                                printf("arbre cree");
+                                break ;
+                case '2' :
+                                printf("\nEntrer une valeur a ajouter : ");
+                                scanf("%d", &nombre );
+                                Ajouter( &arbre , nombre);
+                                break ;
+                case '3' :
+                                printf("\nEntrer une valeur a rechercher : ");
+                                scanf("%d", &val );
+
+                                test=chercher(arbre,val);
+                                if(!test)
+                                printf(" -> : Element pas dans l\'arbre\n");
+                                   else
+                                printf(" ->  : Element dans l\'arbre\n");
+
+
+                break;
+                case '4' :
+                                printf("\nValeur a Supprimer : ");
+                                scanf("%d",&info);
+
+                                test=SupElement(&arbre,info);
+
+                                if(!test)
+                                printf(" -> Element pas dans l\'arbre\n");
+                                else
+                                printf(" -> Element supprime\n");
+
+                                break;
+                case '5' :
+                                printf("Il y a %d element(s)", NombreElements( arbre ) );
+                                break ;
+                case '6' :
+                                printf("Hauteur : %d", Hauteur( arbre ) );
+                                break ;
+                case '7' :
+                                AfficherValeur(arbre);
+                                break ;
+                case '8' :
+                                AfficherNom(arbre);
+                                break ;
+
+
+                default :
+                                choix = 'q';
+                                break ;
+        }
+
+    }
+    while( choix != 'q' );
+
+    return (0);
+}
